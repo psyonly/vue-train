@@ -7,7 +7,7 @@
   background-color="#545c64"
   text-color="#fff"
   active-text-color="#ffd04b">
-    <h3>Backend platform</h3>
+    <h3>Kcats 管理后台</h3>
     <el-menu-item @click="menuClicked(item)" v-for="item in noChildren" :key="item.name" :index="item.name">
       <i :class="`el-icon-${item.icon}`"></i>
       <span slot="title">{{item.label}}</span>
@@ -48,7 +48,7 @@
             isCollapse: false,
             menuData: [
                 {
-                    path: "/home",
+                    path: "/",
                     name: "home page",
                     icon: "s-home",
                     label: "主页",
@@ -69,21 +69,21 @@
                     url: "/user"
                 },
                 {
-                    label: "Other page",
+                    label: "其他",
                     icon: "more",
                     children: [
                         {
                             path: "/pageOne",
                             name: "ticket page",
                             icon: "s-ticket",
-                            label: "ticket",
+                            label: "订单",
                             url: "/other/ticket"
                         },
                         {
                             path: "/pageTwo",
                             name: "custom page",
                             icon: "s-custom",
-                            label: "custom",
+                            label: "推荐",
                             url: "/other/custom"
                         }
                     ]
@@ -99,7 +99,9 @@
           console.log(key, keyPath);
         },
         menuClicked(item) {
-          this.$router.push(item.path)
+          if (this.$route.path != item.path && !(this.$route.path == "/home" && item.path == "/")) {
+            this.$router.push(item.path)
+          }
         }
       },
       computed: {
