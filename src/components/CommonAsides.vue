@@ -8,7 +8,7 @@
   text-color="#fff"
   active-text-color="#ffd04b">
     <h3>Backend platform</h3>
-    <el-menu-item v-for="item in noChildren" :key="item.name" :index="item.name">
+    <el-menu-item @click="menuClicked(item)" v-for="item in noChildren" :key="item.name" :index="item.name">
       <i :class="`el-icon-${item.icon}`"></i>
       <span slot="title">{{item.label}}</span>
     </el-menu-item>
@@ -17,9 +17,9 @@
         <i :class="`el-icon-${item.icon}`"></i>
         <span slot="title">{{item.label}}</span>
       </template>
-        <el-menu-item-group v-for="subItem in item.children" :key="subItem.name" :index="item.name">
-          <el-menu-item index="1-4-1">{{subItem.label}}</el-menu-item>
-        </el-menu-item-group>
+      <el-menu-item @click="menuClicked(subItem)" v-for="subItem in item.children" :key="subItem.name" :index="subItem.name">
+        <span slot="title">{{subItem.label}}</span>
+      </el-menu-item>
     </el-submenu>
   </el-menu>
 </template>
@@ -48,32 +48,39 @@
             isCollapse: false,
             menuData: [
                 {
-                    path: "/Home",
+                    path: "/home",
                     name: "home page",
                     icon: "s-home",
                     label: "主页",
                     url: "/home"
                 },
                 {
-                    path: "/Shop",
+                    path: "/mall",
                     name: "shop page",
                     icon: "s-shop",
                     label: "商品",
                     url: "/shop"
                 },
                 {
+                    path: "/user",
+                    name: "user page",
+                    icon: "user",
+                    label: "用户",
+                    url: "/user"
+                },
+                {
                     label: "Other page",
                     icon: "more",
                     children: [
                         {
-                            path: "/ticket",
+                            path: "/pageOne",
                             name: "ticket page",
                             icon: "s-ticket",
                             label: "ticket",
                             url: "/other/ticket"
                         },
                         {
-                            path: "custom",
+                            path: "/pageTwo",
                             name: "custom page",
                             icon: "s-custom",
                             label: "custom",
@@ -90,6 +97,9 @@
         },
         handleClose(key, keyPath) {
           console.log(key, keyPath);
+        },
+        menuClicked(item) {
+          this.$router.push(item.path)
         }
       },
       computed: {
