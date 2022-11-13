@@ -2,6 +2,9 @@
 node_modules
 /dist
 
+# project privet file
+/src/assets/videos
+
 # local env files
 .env.local
 .env.*.local

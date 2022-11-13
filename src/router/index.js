@@ -7,6 +7,7 @@ import User from '../views/user.vue'
 import Mall from '../views/shop.vue'
 import PageOne from '../views/page_one'
 import PageTwo from '../views/page_two.vue'
+import Video from '../views/video.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,10 @@ const routes = [
             {
                 path: '/pageTwo', 
                 component: PageTwo
+            },
+            {
+                path: '/video', 
+                component: Video
             }
         ]
     }

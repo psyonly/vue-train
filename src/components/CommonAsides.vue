@@ -41,76 +41,83 @@
   }
 </style>
   
-  <script>
-    export default {
-      data() {
-        return {
-            isCollapse: false,
-            menuData: [
-                {
-                    path: "/",
-                    name: "home page",
-                    icon: "s-home",
-                    label: "主页",
-                    url: "/home"
-                },
-                {
-                    path: "/mall",
-                    name: "shop page",
-                    icon: "s-shop",
-                    label: "商品",
-                    url: "/shop"
-                },
-                {
-                    path: "/user",
-                    name: "user page",
-                    icon: "user",
-                    label: "用户",
-                    url: "/user"
-                },
-                {
-                    label: "其他",
-                    icon: "more",
-                    children: [
-                        {
-                            path: "/pageOne",
-                            name: "ticket page",
-                            icon: "s-ticket",
-                            label: "订单",
-                            url: "/other/ticket"
-                        },
-                        {
-                            path: "/pageTwo",
-                            name: "custom page",
-                            icon: "s-custom",
-                            label: "推荐",
-                            url: "/other/custom"
-                        }
-                    ]
-                }
-            ]
-        };
+<script>
+  export default {
+    data() {
+      return {
+          isCollapse: false,
+          menuData: [
+              {
+                  path: "/",
+                  name: "home page",
+                  icon: "s-home",
+                  label: "主页",
+                  url: "/home"
+              },
+              {
+                  path: "/mall",
+                  name: "shop page",
+                  icon: "s-shop",
+                  label: "商品",
+                  url: "/shop"
+              },
+              {
+                  path: "/user",
+                  name: "user page",
+                  icon: "user",
+                  label: "用户",
+                  url: "/user"
+              },
+              {
+                  path: "/video",
+                  name: "video page",
+                  icon: "video-play",
+                  label: "视频",
+                  url: "/vide"
+              },
+              {
+                  label: "其他",
+                  icon: "more",
+                  children: [
+                      {
+                          path: "/pageOne",
+                          name: "ticket page",
+                          icon: "s-ticket",
+                          label: "订单",
+                          url: "/other/ticket"
+                      },
+                      {
+                          path: "/pageTwo",
+                          name: "custom page",
+                          icon: "s-custom",
+                          label: "推荐",
+                          url: "/other/custom"
+                      }
+                  ]
+              }
+          ]
+      };
+    },
+    methods: {
+      handleOpen(key, keyPath) {
+        console.log(key, keyPath);
       },
-      methods: {
-        handleOpen(key, keyPath) {
-          console.log(key, keyPath);
-        },
-        handleClose(key, keyPath) {
-          console.log(key, keyPath);
-        },
-        menuClicked(item) {
-          if (this.$route.path != item.path && !(this.$route.path == "/home" && item.path == "/")) {
-            this.$router.push(item.path)
-          }
-        }
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
       },
-      computed: {
-        hasChildren() {
-            return this.menuData.filter(item => item.children)
-        },
-        noChildren() {
-            return this.menuData.filter(item => !item.children)
+      menuClicked(item) {
+        if (this.$route.path != item.path && !(this.$route.path == "/home" && item.path == "/")) {
+          this.$router.push(item.path)
         }
       }
+    },
+    computed: {
+      hasChildren() {
+          return this.menuData.filter(item => item.children)
+      },
+      noChildren() {
+          return this.menuData.filter(item => !item.children)
+      }
     }
-  </script>
+  }
+</script>
